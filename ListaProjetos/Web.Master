@@ -33,7 +33,7 @@
 
                 <div>
                     <a runat="server" href="~/Pages/Login.aspx">Login</a>
-                    <a runat="server" class="secondary-button" href="~/Register.aspx">Registrar</a>
+                    <a runat="server" class="secondary-button" href="~/Pages/Register.aspx">Registrar</a>
                 </div>
             </div>            
         </header>

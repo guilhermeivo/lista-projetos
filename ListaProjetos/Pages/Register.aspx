@@ -17,7 +17,7 @@
                 <asp:Label ID="lblConfirm" AssociatedControlID="chbConfirm" runat="server" Text="Você confirma os termos de uso?"></asp:Label>
             </p>
             
-            <asp:Button ID="btnLogin" runat="server" Text="Concluir cadastro" />
+            <asp:Button ID="btnLogin" runat="server" Text="Concluir cadastro" OnClick="btnLogin_Click" />
         </div>
     </div>
 </asp:Content>

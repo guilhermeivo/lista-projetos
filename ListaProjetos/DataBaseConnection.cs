@@ -33,7 +33,7 @@ namespace ListaProjetos
         {
             try
             {
-                if ((conn.State == ConnectionState.Open))
+                if (conn != null)
                 {
                     conn.Close();
                     conn.Dispose();
@@ -45,7 +45,7 @@ namespace ListaProjetos
             }
         }
 
-        public DataTable executarSQL(String queryString)
+        public static DataTable executarSQL(String queryString) // select, procedures, etc
         {
             conn = DataBaseConnection.obterConexao();
 
@@ -66,15 +66,16 @@ namespace ListaProjetos
             }
         }
 
-        public void manutencaoDB(SqlCommand cmd) //incluir, alterar, excluir
+        public static int manutencaoDB(SqlCommand cmd) //incluir, alterar, excluir
         {
             try
             {
                 cmd.Connection = DataBaseConnection.obterConexao();
-                cmd.ExecuteScalar();
+                return cmd.ExecuteNonQuery();
             }
             catch (Exception)
             {
+                return 0;
             }
             finally
             {
