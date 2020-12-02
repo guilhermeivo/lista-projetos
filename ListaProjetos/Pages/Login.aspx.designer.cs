@@ -11,34 +11,43 @@ namespace ListaProjetos
 {
 
 
-    public partial class Web
+    public partial class Login
     {
 
         /// <summary>
-        /// Controle head.
+        /// Controle email.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox email;
 
         /// <summary>
-        /// Controle navigationMenu.
+        /// Controle password.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl navigationMenu;
+        protected global::System.Web.UI.WebControls.TextBox password;
 
         /// <summary>
-        /// Controle ContentPlaceHolder.
+        /// Controle inkCadastro.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder;
+        protected global::System.Web.UI.WebControls.HyperLink inkCadastro;
+
+        /// <summary>
+        /// Controle btnLogin.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogin;
     }
 }

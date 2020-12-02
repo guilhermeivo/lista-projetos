@@ -1,0 +1,91 @@
+﻿.container {
+    width: 100%;
+    min-height: calc(100vh - 74px - 51.5px - 20px);
+    display: flex;
+    align-items: center
+}
+
+.contentWrapper {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center
+}
+
+.contentWrapper h1 {
+    margin-bottom: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold
+}
+
+.contentWrapper p {
+    width: 200px;
+    margin-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contentWrapper p a {
+    color: #121212
+}
+
+.contentWrapper .column {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 12px;
+}
+
+.contentWrapper .column input {
+    width: 100%;
+    padding: 16px 24px;
+    background: #f9f9ff;
+    border: 1.5px solid #f0effa;
+    outline: 0;
+}
+
+.contentWrapper .column input:first-child {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+
+.contentWrapper .column input + input {
+    border-top: 0;
+}
+
+.contentWrapper .column input:last-child {
+    border-top: 0;
+
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.contentWrapper .chb {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.contentWrapper .chb input {
+    margin-right: 12px
+}
+
+.contentWrapper > input {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: #e6e6f0 solid 1px;
+    outline: 0;
+    color: #ffffff;
+    font-family: Montserrat, sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    background: #3498db;
+    font-weight: bold;
+}

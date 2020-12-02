@@ -2,19 +2,50 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="pt-br">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400;2,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/Content/login.css" />
+
+    <title><%: Page.Title %></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    <form runat="server">
+        <header class="navigation-menu">
+            <div>
+                <nav runat="server" id="navigationMenu">
+                    <div class="logo">
+                        <h1>Logo</h1>
+                    </div>
+
+                    <a runat="server" href="~/">Home</a>
+                    <a runat="server" href="~/Pages/About.aspx">Sobre</a>
+                </nav>
+
+                <div>
+                    <a runat="server" href="~/Pages/Login.aspx">Login</a>
+                    <a runat="server" class="secondary-button" href="~/Register.aspx">Registrar</a>
+                </div>
+            </div>            
+        </header>
+
+        <div class="body-content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+
+        <footer>
+            <p>&copy; <%: DateTime.Now.Year %> - Lista de Projetos</p>
+        </footer>
     </form>
 </body>
 </html>

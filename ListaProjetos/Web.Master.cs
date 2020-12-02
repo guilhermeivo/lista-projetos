@@ -11,7 +11,14 @@ namespace ListaProjetos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (false)
+            {
+                HyperLink LinkList = new HyperLink();
+                LinkList.NavigateUrl = "~/Pages/ListProjects.aspx";
+                LinkList.Text = "Projetos";
 
+                navigationMenu.Controls.Add(LinkList);
+            }
         }
     }
 }
