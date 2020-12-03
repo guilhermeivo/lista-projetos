@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Web.master.cs" Inherits="ListaProjetos.Web" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="ListaProjetos.Web" %>
 
 <!DOCTYPE html>
 
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 
-    <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/Content/global.css" />
     <link rel="stylesheet" href="~/Content/login.css" />
 
     <title><%: Page.Title %></title>
@@ -24,16 +24,18 @@
             <div>
                 <nav runat="server" id="navigationMenu">
                     <div class="logo">
-                        <h1>Logo</h1>
+                        <span class="material-icons">
+                        cloud_download
+                        </span>
                     </div>
 
                     <a runat="server" href="~/">Home</a>
-                    <a runat="server" href="~/Pages/About.aspx">Sobre</a>
+                    <a runat="server" href="~/Views/About.aspx">Sobre</a>
                 </nav>
 
-                <div>
-                    <a runat="server" href="~/Pages/Login.aspx">Login</a>
-                    <a runat="server" class="secondary-button" href="~/Pages/Register.aspx">Registrar</a>
+                <div runat="server" id="loginMenu">
+                    <a runat="server" href="~/Views/Login.aspx">Login</a>
+                    <a runat="server" class="secondary-button" href="~/Views/Register.aspx">Registrar</a>
                 </div>
             </div>            
         </header>

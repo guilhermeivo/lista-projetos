@@ -10,7 +10,6 @@ create table tblProjeto (
     codTag int,
     titulo varchar(70) not null,
     descricao varchar(200),
-    imagem varbinary
 )
 go
 
@@ -19,7 +18,7 @@ create table tblUsuario (
     nome varchar(70) not null,
     username varchar(70),
     email varchar(70) not null,
-    senha int not null,
+    senha varchar(70) not null,
     imagem varbinary,
     linkWebsite varchar(70),
     localizacao varchar(70)
@@ -44,19 +43,6 @@ create table tblProjetoUsuario (
 )
 go
 
-create table tblFavoriteProject (
-    codProjeto int not null,
-    codUsuario int not null
-)
-go
-
-create table tblFollow (
-    codFollow int identity not null,
-    codUsuarioFollowing int not null,
-    codUsuarioFollower int not null
-)
-go
-
 create index XPROJETO on tblProjeto (codProjeto)
 create index XUSUARIO on tblUsuario (codUsuario)
 create index XSTATUS on tblStatus (codStatus)
@@ -74,12 +60,7 @@ go
 alter table tblProjeto add constraint fk_projeto_stats foreign key (codStatus) references tblStatus (codStatus)
 alter table tblProjeto add constraint fk_projeto_tags foreign key (codTag) references tblTag (codTag)
 alter table tblProjetoUsuario add constraint fk_projetoUsuario_projeto foreign key (codProjeto) references tblProjeto (codProjeto)
-alter table tblProjetoUsuario add constraint fk_projetoUsuario_usuario foreign key (codUsuario) references tblUsuario (codUsuario)
-alter table tblFavoriteProject add constraint fk_favoritesProjects_projeto foreign key (codProjeto) references tblProjeto (codProjeto)
-alter table tblFavoriteProject add constraint fk_favoritesProjects_usuario foreign key (codUsuario) references tblUsuario (codUsuario)
-alter table tblFollow add constraint fk_following_user foreign key (codUsuarioFollowing) references tblUsuario (codUsuario)
-alter table tblFollow add constraint fk_follower_user foreign key (codUsuarioFollower) references tblUsuario (codUsuario)
-go
+alter table tblProjetoUsuario add constraint fk_projetoUsuario_usuario foreign key (codUsuario) references tblUsuario (codUsuario)go
 
 insert into tblStatus values ('Public'), ('Private')
 go

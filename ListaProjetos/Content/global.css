@@ -1,0 +1,188 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;    
+}
+
+*, input, textarea {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    color: #24292e
+}
+
+.navigation-menu {    
+    background-color: #24292e;    
+    margin-bottom: 20px;
+}
+
+.navigation-menu > div {
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.navigation-menu nav {
+    display: flex;
+    align-items: center;
+}
+
+.navigation-menu nav .logo span {
+    font-size: 38px;
+    color: #ffffff
+}
+
+.navigation-menu nav .logo, .navigation-menu nav a {
+    margin-right: 16px
+}
+
+.navigation-menu a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 12px 0;
+}
+
+.navigation-menu a:hover {
+    opacity: .8;
+}
+
+a.secondary-button {
+    border: 1.5px solid #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 12px
+}
+
+#loginMenu {
+    display: flex;
+    align-items: center
+}
+
+#loginMenu p {
+    margin-right: 12px;
+    color: #ffffff
+}
+
+#loginMenu span {
+    color: #ffffff
+}
+
+.imgPhotoPerfil {
+    border-radius: 50px;
+    border: 1.5px solid #ffffff;
+    width: 25px;
+    height: 25px;
+}
+
+footer {
+    padding: 16px;
+    background: #f9f9ff;
+    border-top: 1.5px solid #f0effa
+}
+
+.body-content {
+    min-height: calc(100vh - 74px - 51.5px - 20px);
+}
+
+.container-projects {
+    width: 100%;
+    min-height: calc(100vh - 74px - 51.5px - 20px);
+    display: flex;
+}
+
+.container-projects .sidebar-menu {
+    padding: 16px;
+}
+
+.container-projects .sidebar-menu .photoPerfil {
+    width: 200px;
+    height: 200px;
+    border: 1.5px solid #f0effa;
+    background: #f9f9ff;
+    border-radius: 100%;
+    margin-bottom: 12px
+}
+
+.container-projects .sidebar-menu h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.container-projects .sidebar-menu p {
+    font-weight: 200;
+    opacity: 0.6;
+    font-size: 20px;
+}
+
+.container-projects .sidebar-menu .bold {
+    font-weight: bold
+}
+
+.container {
+    width: 100%;
+    min-height: calc(100vh - 74px - 51.5px - 20px);
+    display: flex;
+    align-items: center
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.home-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 16px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.home-page h1 {
+    font-size: 62px;
+    max-width: 1200px;
+    margin-bottom: 12px;
+    margin: 12px auto;
+}
+
+.home-page p {
+    font-size: 24px;
+    margin-bottom: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 12px;  
+}
+
+.home-page img {
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 12px;   
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #0366D6;
+    border: #e6e6f0 solid 1px;
+    outline: 0;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+}

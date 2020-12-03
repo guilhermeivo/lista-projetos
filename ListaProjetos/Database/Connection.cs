@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace ListaProjetos
 {
-    public class DataBaseConnection
+    public class Connection
     {
         private static string connString = "Password=12345; Persist Security Info=True; User ID=sa; Initial Catalog=ListaProjetos; Data Source=" + Environment.MachineName;
         private static SqlConnection conn = null;
 
-        public static SqlConnection obterConexao()
+        public static SqlConnection open()
         {
             conn = new SqlConnection();
 
             try
             {
                 conn = new SqlConnection(connString);
-                conn.Open();                
+                conn.Open();
             }
             catch (Exception)
             {
@@ -29,7 +26,7 @@ namespace ListaProjetos
             return conn;
         }
 
-        public static void fecharConexao()
+        public static void close()
         {
             try
             {
@@ -40,14 +37,14 @@ namespace ListaProjetos
                     conn = null;
                 }
             }
-            catch (Exception) 
+            catch (Exception)
             {
             }
         }
 
         public static DataTable executarSQL(String queryString) // select, procedures, etc
         {
-            conn = DataBaseConnection.obterConexao();
+            conn = Connection.open();
 
             try
             {
@@ -62,7 +59,7 @@ namespace ListaProjetos
             }
             finally
             {
-                DataBaseConnection.fecharConexao();
+                Connection.close();
             }
         }
 
@@ -70,7 +67,7 @@ namespace ListaProjetos
         {
             try
             {
-                cmd.Connection = DataBaseConnection.obterConexao();
+                cmd.Connection = Connection.open();
                 return cmd.ExecuteNonQuery();
             }
             catch (Exception)
@@ -79,7 +76,7 @@ namespace ListaProjetos
             }
             finally
             {
-                DataBaseConnection.fecharConexao();
+                Connection.close();
             }
         }
     }
