@@ -30,7 +30,7 @@
     margin-bottom: 12px;
 }
 
-.contentWrapper .column input {
+.contentWrapper .column input, .contentWrapper .column select {
     width: 100%;
     padding: 16px 24px;
     background: #f9f9ff;
@@ -38,17 +38,17 @@
     outline: 0;
 }
 
-.contentWrapper .column input:first-child {
+.contentWrapper .column input:first-child, .contentWrapper .column select:first-child {
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
 }
 
 
-.contentWrapper .column input + input {
+.contentWrapper .column input + input, .contentWrapper .column select + select {
     border-top: 0;
 }
 
-.contentWrapper .column input:last-child {
+.contentWrapper .column input:last-child, .contentWrapper .column select:last-child {
     border-top: 0;
 
     border-top-right-radius: 0;

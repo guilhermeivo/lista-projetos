@@ -2,26 +2,34 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <div class="container-projects">
-        <div class="sidebar-menu">
-            <div class="photoPerfil"></div>
-            <h1>Nome</h1>
-            <p>Username</p>
-            <p><span class="material-icons">person</span><span class="bold">7</span> following</p>
-
-            <p>LinkWebsite</p>
-            <p>Localization</p>
-
-        </div>
-        <div class="projects-list">
+    <div class="container projects-page">
+        <div class="header-title">
             <h1>Projetos</h1>
+            <asp:HyperLink ID="hpCreateProject" CssClass="btn btn-primary" runat="server" NavigateUrl="~/Views/CreateProjects.aspx" >Criar projeto!</asp:HyperLink>
+        </div>
+        
 
-            <div class="box-cards">
-                <div class="cards">
-                    <h3>Title</h3>
-                    <p>Description</p>
-                </div>
-            </div>
+        <div runat="server" class="box" id="boxProjects">
+            <asp:Repeater ID="rptProjetos" runat="server">
+                <ItemTemplate>
+                    <div class="card">
+                        <div class="title">
+                            <span class="material-icons">
+                            web_asset
+                            </span>
+                            <h3>
+                                <%# DataBinder.Eval(Container.DataItem, "nome") %>
+                            </h3>
+                        </div>
+                        <p class="description">
+                            
+                        </p>
+                        <div class="tags">
+
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
     </div>
 </asp:Content>

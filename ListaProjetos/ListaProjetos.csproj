@@ -105,6 +105,7 @@
     <Content Include="Content\login.css" />
     <Content Include="Content\global.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Views\CreateProjects.aspx" />
     <Content Include="Views\ListProjects.aspx" />
     <Content Include="Views\Login.aspx" />
     <Content Include="Views\Register.aspx" />
@@ -125,6 +126,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProjects.aspx.cs">
+      <DependentUpon>CreateProjects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CreateProjects.aspx.designer.cs">
+      <DependentUpon>CreateProjects.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ListProjects.aspx.cs">
       <DependentUpon>ListProjects.aspx</DependentUpon>
