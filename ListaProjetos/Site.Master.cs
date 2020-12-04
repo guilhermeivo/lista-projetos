@@ -37,12 +37,14 @@ namespace ListaProjetos
 
                         // Photo perfil                        
 
-                        Image imgPhotoPerfil = new Image();
+                        ImageButton imgPhotoPerfil = new ImageButton();
 
                         if (imagem == "")
                         {
                             imgPhotoPerfil.ImageUrl = "~/Content/perfilPhoto.jpg";
                             imgPhotoPerfil.CssClass = "imgPhotoPerfil";
+                            imgPhotoPerfil.ID = "ImgPhoto";
+                            imgPhotoPerfil.Click += new ImageClickEventHandler(ImgPhoto_Click);
                         }
                         else
                         {
@@ -61,6 +63,10 @@ namespace ListaProjetos
             {
                 Utils.ShowMessage(Page, "Error:" + ex);
             }
+        }
+        public void ImgPhoto_Click(object sender, ImageClickEventArgs e)
+        {
+            Utils.ShowMessage(Page, "Clicou");
         }
     }
 }

@@ -109,6 +109,7 @@
     <Content Include="Views\CreateProjects.aspx" />
     <Content Include="Views\ListProjects.aspx" />
     <Content Include="Views\Login.aspx" />
+    <Content Include="Views\PerfilUser.aspx" />
     <Content Include="Views\Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -150,6 +151,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\PerfilUser.aspx.cs">
+      <DependentUpon>PerfilUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PerfilUser.aspx.designer.cs">
+      <DependentUpon>PerfilUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
