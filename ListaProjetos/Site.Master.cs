@@ -9,35 +9,57 @@ namespace ListaProjetos
     {
         protected void Page_Load(object sender, EventArgs e)
         {          
-            if (Request.Cookies["codUsuario"] != null)
+            try
             {
-                String codUsuario = Request.Cookies["codUsuario"].Value;
-                String nome = "";
-
-                String queryString = "select * from tblUsuario where '" + codUsuario + "' = codUsuario";
-
-                DataTable dt = Connection.executarSQL(queryString);                
-
-                if (dt.Rows.Count > 0)
+                if (Request.Cookies["codUsuario"] != null)
                 {
-                    DataRow[] rows = dt.Select();
+                    String codUsuario = Request.Cookies["codUsuario"].Value;
+                    String nome = "";
+                    String imagem;
 
-                    nome = rows[0]["nome"].ToString();
+                    String queryString = "select * from tblUsuario where '" + codUsuario + "' = codUsuario";
 
-                    // HyperLink in menu
-                    HyperLink LinkList = new HyperLink();
-                    LinkList.NavigateUrl = "~/Views/ListProjects.aspx";
-                    LinkList.Text = "Projetos";
+                    DataTable dt = Connection.executarSQL(queryString);
 
-                    navigationMenu.Controls.Add(LinkList);
+                    if (dt.Rows.Count > 0)
+                    {
+                        DataRow[] rows = dt.Select();
 
-                    // Photo perfil
-                    loginMenu.InnerHtml = String.Empty;                    
-                    LiteralControl imgPhotoPerfil = new LiteralControl("<div class=\"imgPhotoPerfil\" title=\"" + nome + "\"></div>");
-                    LiteralControl iconPerfil = new LiteralControl("<span class='material-icons'>keyboard_arrow_down</span>");
-                    loginMenu.Controls.Add(imgPhotoPerfil);
-                    loginMenu.Controls.Add(iconPerfil);
+                        nome = rows[0]["nome"].ToString();
+                        imagem = rows[0]["imagem"].ToString();
+
+                        // HyperLink in menu
+                        HyperLink LinkList = new HyperLink();
+                        LinkList.NavigateUrl = "~/Views/ListProjects.aspx";
+                        LinkList.Text = "Projetos";
+
+                        navigationMenu.Controls.Add(LinkList);
+
+                        // Photo perfil                        
+
+                        Image imgPhotoPerfil = new Image();
+
+                        if (imagem == "")
+                        {
+                            imgPhotoPerfil.ImageUrl = "~/Content/perfilPhoto.jpg";
+                            imgPhotoPerfil.CssClass = "imgPhotoPerfil";
+                        }
+                        else
+                        {
+                            imgPhotoPerfil.CssClass = "imgPhotoPerfil";
+                        }
+
+                        loginMenu.InnerHtml = String.Empty;
+                        
+                        LiteralControl iconPerfil = new LiteralControl("<span class='material-icons'>keyboard_arrow_down</span>");
+                        loginMenu.Controls.Add(imgPhotoPerfil);
+                        loginMenu.Controls.Add(iconPerfil);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowMessage(Page, "Error:" + ex);
             }
         }
     }

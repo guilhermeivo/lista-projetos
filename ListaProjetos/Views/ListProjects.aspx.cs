@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace ListaProjetos
 {
@@ -9,22 +10,27 @@ namespace ListaProjetos
         {
             String codUsuario = Request.Cookies["codUsuario"].Value;
 
-            String queryString = "select codStatus, codTag, titulo, descricao from tblProjeto inner join tblProjetoUsuario on tblProjeto.codProjeto = tblProjetoUsuario.codUsuario and tblProjetoUsuario.codUsuario = '" + codUsuario + "'";
+            String queryString = "select tblProjeto.codProjeto, tblProjeto.titulo, tblProjeto.descricao, tblTag.descricao as tag, tblStatus.descricao as status from tblProjeto inner join tblProjetoUsuario on tblProjeto.codProjeto = tblProjetoUsuario.codProjeto inner join tblTag on tblProjeto.codTag = tblTag.codTag inner join tblStatus on tblProjeto.codStatus = tblStatus.codStatus where tblProjetoUsuario.codUsuario = "+ codUsuario;
 
-            DataTable dt = Connection.executarSQL(queryString);
-            
+            SqlConnection conn = Connection.open();
 
-            if (dt.Rows.Count > 0)
+            try
             {
-                DataRow[] rows = dt.Select();
+                SqlDataAdapter adaptador = new SqlDataAdapter(queryString, conn);
+                DataSet ds = new DataSet();
+                adaptador.Fill(ds);
 
-                rptProjetos.DataSource = dt;
+                rptProjetos.DataSource = ds;
                 rptProjetos.DataBind();
-            }        
-            else
+            }
+            catch (Exception)
             {
                 boxProjects.InnerText = "Não foi encontrado nenhum projeto";
             }
+            finally
+            {
+                Connection.close();
+            }     
         }
     }
 }

@@ -18,15 +18,17 @@
                             web_asset
                             </span>
                             <h3>
-                                <%# DataBinder.Eval(Container.DataItem, "nome") %>
+                                <%# DataBinder.Eval(Container.DataItem, "titulo") %>
                             </h3>
                         </div>
                         <p class="description">
-                            
+                            <%# DataBinder.Eval(Container.DataItem, "descricao") %>
                         </p>
-                        <div class="tags">
-
-                        </div>
+                        <div>
+                            <div class="tags">
+                                <%# DataBinder.Eval(Container.DataItem, "tag") %>
+                            </div>
+                        </div>                        
                     </div>
                 </ItemTemplate>
             </asp:Repeater>

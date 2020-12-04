@@ -77,8 +77,12 @@ a.secondary-button {
 .imgPhotoPerfil {
     border-radius: 50px;
     border: 1.5px solid #ffffff;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 footer {
@@ -89,41 +93,6 @@ footer {
 
 .body-content {
     min-height: calc(100vh - 74px - 51.5px - 20px);
-}
-
-.container-projects {
-    width: 100%;
-    min-height: calc(100vh - 74px - 51.5px - 20px);
-    display: flex;
-}
-
-.container-projects .sidebar-menu {
-    padding: 16px;
-}
-
-.container-projects .sidebar-menu .photoPerfil {
-    width: 200px;
-    height: 200px;
-    border: 1.5px solid #f0effa;
-    background: #f9f9ff;
-    border-radius: 100%;
-    margin-bottom: 12px
-}
-
-.container-projects .sidebar-menu h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    font-size: 32px;
-}
-
-.container-projects .sidebar-menu p {
-    font-weight: 200;
-    opacity: 0.6;
-    font-size: 20px;
-}
-
-.container-projects .sidebar-menu .bold {
-    font-weight: bold
 }
 
 .container {
@@ -152,7 +121,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px
+    margin-bottom: 12px;
+    padding: 0 15px;
 }
 
 .projects-page .header-title h1 {
@@ -170,8 +140,8 @@ footer {
 }
 
 .home-page h1 {
-    font-size: 62px;
-    max-width: 1200px;
+    font-size: 54px;
+    max-width: 1000px;
     margin-bottom: 12px;
     margin: 12px auto;
 }
@@ -202,7 +172,56 @@ footer {
     outline: 0;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 500;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.box .card {
+    width: 386px;
+    padding: 10px;
+    background: #f9f9ff;
+    border: 1.5px solid #f0effa;
+    min-height: 120px;
+    margin: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+
+.box .card .title {
+    display: flex;
+    align-items: center;
+}
+
+.box .card .title span {
+    margin-right: 8px
+}
+
+.box .card .title h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #0366D6;
+    font-size: 16px;
+}
+
+.tags {
+    padding: 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: #0366D6;
+    border: #e6e6f0 solid 1px;
+    outline: 0;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    width: fit-content;
 }

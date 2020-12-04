@@ -47,20 +47,19 @@ create index XPROJETO on tblProjeto (codProjeto)
 create index XUSUARIO on tblUsuario (codUsuario)
 create index XSTATUS on tblStatus (codStatus)
 create index XTAG on tblTag (codTag)
-create index XFOLLOW on tblFollow (codFollow)
 go
 
 alter table tblProjeto add constraint pk_projeto primary key (codProjeto)
 alter table tblUsuario add constraint pk_usuario primary key (codUsuario)
 alter table tblStatus add constraint pk_status primary key (codStatus)
 alter table tblTag add constraint pk_tag primary key (codTag)
-alter table tblFollow add constraint pk_follow primary key (codFollow)
 go
 
 alter table tblProjeto add constraint fk_projeto_stats foreign key (codStatus) references tblStatus (codStatus)
 alter table tblProjeto add constraint fk_projeto_tags foreign key (codTag) references tblTag (codTag)
 alter table tblProjetoUsuario add constraint fk_projetoUsuario_projeto foreign key (codProjeto) references tblProjeto (codProjeto)
-alter table tblProjetoUsuario add constraint fk_projetoUsuario_usuario foreign key (codUsuario) references tblUsuario (codUsuario)go
+alter table tblProjetoUsuario add constraint fk_projetoUsuario_usuario foreign key (codUsuario) references tblUsuario (codUsuario)
+go
 
 insert into tblStatus values ('Public'), ('Private')
 go

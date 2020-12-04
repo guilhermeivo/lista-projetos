@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\perfilPhoto.jpg" />
     <Content Include="Content\undraw_task_list_6x9d.svg" />
     <Content Include="Views\About.aspx" />
     <Content Include="Content\login.css" />
