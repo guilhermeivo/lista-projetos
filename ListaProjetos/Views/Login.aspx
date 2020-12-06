@@ -13,7 +13,7 @@
             
             <p class="description">Vocé não tem <asp:HyperLink ID="inkCadastro" runat="server" NavigateUrl="~/Views/Register.aspx">Cadastro</asp:HyperLink>?</p>
             
-            <asp:Button ID="btnLogin" runat="server" Text="Concluir cadastro" OnClick="btnLogin_Click" />
+            <asp:Button ID="btnLogin" runat="server" Text="Concluir cadastro" CssClass="primary-button" OnClick="btnLogin_Click" />
         </div>
     </div>
 </asp:Content>

@@ -17,7 +17,7 @@ namespace ListaProjetos
                 String email = txtEmail.Text.Trim();
                 String senha = txtPassword.Text.Trim();
 
-                if (email != null && senha != null)
+                if (email != "" && senha != "")
                 {
                     String queryString = "select codUsuario, email, senha from tblUsuario where '" + email + "' = email and '" + senha + "' = senha";
 
@@ -29,23 +29,21 @@ namespace ListaProjetos
                         Response.Cookies["codUsuario"].Value = rows[0]["codUsuario"].ToString();
                         Response.Cookies["codUsuario"].Expires = DateTime.Now.AddDays(1d);
 
-                        Utils.ShowMessage(Page, "Login Aprovado!");
-
                         Response.Redirect("~/");
                     }
                     else
                     {
-                        Utils.ShowMessage(Page, "Erro ao efetuar login!");
+                        Utils.ShowMessage(this, "Erro ao efetuar login!");
                     }
                 }
                 else
                 {
-                    Utils.ShowMessage(Page, "Insira os valores!");
+                    Utils.ShowMessage(this, "Insira os valores!");
                 }
             }
             catch (Exception error)
             {
-                Utils.ShowMessage(Page, "error" + error);
+                Utils.ShowMessage(this, "error" + error);
             }
         }
     }

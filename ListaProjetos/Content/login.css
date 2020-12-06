@@ -68,17 +68,28 @@
     margin-right: 12px
 }
 
-.contentWrapper > input {
+.contentWrapper > input.primary-button {
     width: 100%;
     padding: 16px 24px;
-    border-radius: 12px;
+    background: #0366D6;
     border: #e6e6f0 solid 1px;
+    border-radius: 12px;
     outline: 0;
     color: #ffffff;
-    font-family: Montserrat, sans-serif;
-    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
     cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 8px
+}
 
-    background: #0366D6;
-    font-weight: bold;
+.contentWrapper > input.secondary-button {
+    width: 100%;
+    background: #f9f9ff;
+    border: 1.5px solid #f0effa;
+    border-radius: 12px;
+    padding: 16px 24px;
+    outline: 0;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
 }

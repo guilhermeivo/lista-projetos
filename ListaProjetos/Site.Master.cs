@@ -21,42 +21,45 @@ namespace ListaProjetos
 
                     DataTable dt = Connection.executarSQL(queryString);
 
-                    if (dt.Rows.Count > 0)
+                    if (dt != null)
                     {
-                        DataRow[] rows = dt.Select();
-
-                        nome = rows[0]["nome"].ToString();
-                        imagem = rows[0]["imagem"].ToString();
-
-                        // HyperLink in menu
-                        HyperLink LinkList = new HyperLink();
-                        LinkList.NavigateUrl = "~/Views/ListProjects.aspx";
-                        LinkList.Text = "Projetos";
-
-                        navigationMenu.Controls.Add(LinkList);
-
-                        // Photo perfil                        
-
-                        ImageButton imgPhotoPerfil = new ImageButton();
-
-                        if (imagem == "")
+                        if (dt.Rows.Count > 0)
                         {
-                            imgPhotoPerfil.ImageUrl = "~/Content/perfilPhoto.jpg";
-                            imgPhotoPerfil.CssClass = "imgPhotoPerfil";
-                            imgPhotoPerfil.ID = "ImgPhoto";
-                            imgPhotoPerfil.Click += new ImageClickEventHandler(ImgPhoto_Click);
-                        }
-                        else
-                        {
-                            imgPhotoPerfil.CssClass = "imgPhotoPerfil";
-                        }
+                            DataRow[] rows = dt.Select();
 
-                        loginMenu.InnerHtml = String.Empty;
-                        
-                        LiteralControl iconPerfil = new LiteralControl("<span class='material-icons'>keyboard_arrow_down</span>");
-                        loginMenu.Controls.Add(imgPhotoPerfil);
-                        loginMenu.Controls.Add(iconPerfil);
-                    }
+                            nome = rows[0]["nome"].ToString();
+                            imagem = rows[0]["imagem"].ToString();
+
+                            // HyperLink in menu
+                            HyperLink LinkList = new HyperLink();
+                            LinkList.NavigateUrl = "~/Views/ListProjects.aspx";
+                            LinkList.Text = "Projetos";
+
+                            navigationMenu.Controls.Add(LinkList);
+
+                            // Photo perfil                        
+
+                            ImageButton imgPhotoPerfil = new ImageButton();
+
+                            if (imagem == "")
+                            {
+                                imgPhotoPerfil.ImageUrl = "~/Content/perfilPhoto.jpg";
+                                imgPhotoPerfil.CssClass = "imgPhotoPerfil";
+                                imgPhotoPerfil.ID = "ImgPhoto";
+                                imgPhotoPerfil.Click += new ImageClickEventHandler(ImgPhoto_Click);
+                            }
+                            else
+                            {
+                                imgPhotoPerfil.CssClass = "imgPhotoPerfil";
+                            }
+
+                            loginMenu.InnerHtml = String.Empty;
+
+                            LiteralControl iconPerfil = new LiteralControl("<span class='material-icons'>keyboard_arrow_down</span>");
+                            loginMenu.Controls.Add(imgPhotoPerfil);
+                            loginMenu.Controls.Add(iconPerfil);
+                        }
+                    }                    
                 }
             }
             catch (Exception ex)
@@ -66,7 +69,7 @@ namespace ListaProjetos
         }
         public void ImgPhoto_Click(object sender, ImageClickEventArgs e)
         {
-            Utils.ShowMessage(Page, "Clicou");
+            Response.Redirect("~/Views/PerfilUser.aspx");
         }
     }
 }

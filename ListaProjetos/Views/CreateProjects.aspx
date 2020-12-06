@@ -5,7 +5,6 @@
     <div class="container forms-page">
         <div class="contentWrapper">
             <h1>Projetos </h1>
-            <p>.</p>
             <div class="column">
                 <asp:TextBox ID="txtTitulo" runat="server" placeholder="Titulo"></asp:TextBox>
                 <asp:TextBox ID="txtDescricao" runat="server" placeholder="Descrição"></asp:TextBox>
@@ -16,7 +15,7 @@
                 </asp:DropDownList>
             </div>
             
-            <asp:Button ID="btnProjeto" runat="server" Text="Criar Projeto" OnClick="btnProjeto_Click"/>
+            <asp:Button ID="btnProjeto" runat="server" Text="Criar Projeto" CssClass="primary-button" OnClick="btnProjeto_Click"/>
 
             <div class="message">
                 <asp:Literal ID="ltMessage" runat="server"/>
