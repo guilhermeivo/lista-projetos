@@ -114,7 +114,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Database\Connection.cs" />
+    <Compile Include="Model\Usuario.cs" />
     <Compile Include="Views\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

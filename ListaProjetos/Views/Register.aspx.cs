@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ListaProjetos.Model;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -14,36 +15,21 @@ namespace ListaProjetos
         {
             try
             {
-                String nome = txtNome.Text.Trim();
-                String email = txtEmail.Text.Trim();
-                String senha = txtPassword.Text.Trim();
+                Usuario usuario = new Usuario();
+                usuario.setNome(txtNome.Text.Trim());
+                usuario.setEmail(txtEmail.Text.Trim());
+                usuario.setSenha(txtPassword.Text.Trim());
                 String confirmSenha = txtConfirmPassowrd.Text.Trim();
 
-                if (nome != "" && email != "" && senha != "" && confirmSenha == "")
+                if ((usuario.getNome() != "") && (usuario.getEmail() != "") && (usuario.getSenha() != "") && (confirmSenha != ""))
                 {
-                    if (senha == confirmSenha)
+                    if (usuario.getSenha() == confirmSenha)
                     {
                         if (chbConfirm.Checked)
                         {
-                            if (thisEmailIsUnique(email))
+                            if (thisEmailIsUnique(usuario.getEmail()))
                             {
-                                String queryString = "insert into tblUsuario (nome, email, senha) values (@nome, @email, @senha)";
-                                SqlCommand cmd = new SqlCommand(queryString);
-
-                                cmd.Parameters.Add("@nome", SqlDbType.NVarChar, 70).Value = nome;
-                                cmd.Parameters.Add("@email", SqlDbType.NVarChar, 70).Value = email;
-                                cmd.Parameters.Add("@senha", SqlDbType.NVarChar, 70).Value = senha;
-
-                                int flag = Connection.manutencaoDB(cmd);
-
-                                if (flag > 0)
-                                {
-                                    Response.Redirect("~/Views/Login.aspx");
-                                }
-                                else
-                                {
-                                    Utils.ShowMessage(this, "Erro ao cadastrar!");
-                                }
+                                UsuarioController.criarUsuario(this, usuario);                                
                             }
                             else
                             {
@@ -73,25 +59,16 @@ namespace ListaProjetos
 
         public bool thisEmailIsUnique(String email)
         {
-            try
+            Usuario usuario = UsuarioController.listarUsuarioEmail(this, email);
+
+            if (usuario == null)
             {
-                String queryString = "select email from tblUsuario where email = '" + email + "'";
-
-                DataTable dt = Connection.executarSQL(queryString);
-
-                if (dt.Rows.Count > 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
-            catch
+            else
             {
                 return false;
-            }
+            }            
         }
     }
 }

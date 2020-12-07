@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ListaProjetos.Model;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -14,19 +15,16 @@ namespace ListaProjetos
         {
             try
             {
-                String email = txtEmail.Text.Trim();
+                String email = (txtEmail.Text.Trim());
                 String senha = txtPassword.Text.Trim();
 
                 if (email != "" && senha != "")
                 {
-                    String queryString = "select codUsuario, email, senha from tblUsuario where '" + email + "' = email and '" + senha + "' = senha";
-
-                    DataTable dt = Connection.executarSQL(queryString);
-                    DataRow[] rows = dt.Select();
-
-                    if (dt.Rows.Count > 0)
+                    Usuario usuario = UsuarioController.listarUsuarioEmail(this, email);
+                    
+                    if (usuario.getSenha() == senha)
                     {
-                        Response.Cookies["codUsuario"].Value = rows[0]["codUsuario"].ToString();
+                        Response.Cookies["codUsuario"].Value = Convert.ToString(usuario.getCodUsuario());
                         Response.Cookies["codUsuario"].Expires = DateTime.Now.AddDays(1d);
 
                         Response.Redirect("~/");

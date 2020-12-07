@@ -7,7 +7,7 @@ namespace ListaProjetos
     {
         public static void ShowMessage(Page page, String alertString)
         {
-            page.ClientScript.RegisterClientScriptBlock(page.GetType(), "OK", "window.alert('" + alertString + "');", true);
+            page.ClientScript.RegisterStartupScript(page.GetType(), "OK", "window.alert('" + alertString + "');", true);
         }
     }
 }
