@@ -33,7 +33,7 @@ namespace ListaProjetos
 
                 Utils.ShowMessage(page, "Sucesso!");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Utils.ShowMessage(page, "Error");
             }
@@ -76,7 +76,7 @@ namespace ListaProjetos
                 return null;
             }
         }
-        public static Usuario listarUsuarioCod(Page page, String codUsuario)
+        public static Usuario listarUsuarioCod(Page page, int codUsuario)
         {
             SqlConnection conn;
             String queryString = "select * from tblUsuario where codUsuario = @codUsuario";
@@ -93,7 +93,7 @@ namespace ListaProjetos
                 if (reader.Read())
                 {
                     Usuario usuario = new Usuario();
-                    usuario.setCodUsuario(int.Parse(codUsuario));
+                    usuario.setCodUsuario(codUsuario);
 
                     usuario.setCodUsuario(int.Parse(reader["codUsuario"].ToString()));
                     usuario.setNome(reader["nome"].ToString());
@@ -139,7 +139,7 @@ namespace ListaProjetos
                     Utils.ShowMessage(page, "Registro atualizado com sucesso!");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Utils.ShowMessage(page, "Error");
             }

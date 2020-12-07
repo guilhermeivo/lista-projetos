@@ -40,44 +40,6 @@ namespace ListaProjetos
             catch (Exception)
             {
             }
-        }
-
-        public static DataTable executarSQL(String queryString) // select, procedures, etc
-        {
-            conn = Connection.open();
-
-            try
-            {
-                SqlDataAdapter adaptador = new SqlDataAdapter(queryString, conn);
-                DataSet ds = new DataSet();
-                adaptador.Fill(ds);
-                return ds.Tables[0];
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                Connection.close();
-            }
-        }
-
-        public static int manutencaoDB(SqlCommand cmd) //incluir, alterar, excluir
-        {
-            try
-            {
-                cmd.Connection = Connection.open();
-                return cmd.ExecuteNonQuery();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            finally
-            {
-                Connection.close();
-            }
-        }
+        }      
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ListaProjetos.Controllers;
+using ListaProjetos.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -23,79 +25,62 @@ namespace ListaProjetos.Views
         {
             try
             {
-                String titulo = txtTitulo.Text.Trim();
-                String descricao = txtDescricao.Text.Trim();
-                String tag = txtTags.Text.Trim();
-                int codTag = 0;
-                String status = ddlStatus.SelectedValue;
+                Projeto projeto = new Projeto();
+                projeto.setTitulo(txtTitulo.Text.Trim());
+                projeto.setDescricao(txtDescricao.Text.Trim());
 
-                if (titulo != "" && descricao != "" && tag != "")
+                Tag tag = new Tag();
+                tag.setCodTag(0);
+                tag.setDescricao(txtTags.Text.Trim());
+
+                _Status _status = new _Status();
+                _status.setCodStatus(int.Parse(ddlStatus.SelectedValue));
+                _status.setDescricao(ddlStatus.Text);
+
+                if (projeto.getTitulo() != "" && projeto.getDescricao() != "" && tag.getDescricao() != "")
                 {
-                    String queryStringTags = "select * from tblTag where '" + tag + "' = descricao";
-                    DataTable dtTags = Connection.executarSQL(queryStringTags);
+                    Tag tagReturn = TagController.listarTag(this, tag.getDescricao());
 
-                    if (dtTags.Rows.Count > 0)
+                    if (tagReturn != null)
                     {
-                        DataRow[] rowsTags = dtTags.Select();
-                        codTag = int.Parse(rowsTags[0]["codTag"].ToString());                        
+                        tag.setCodTag(tagReturn.getCodTag());
+                        tag.setDescricao(tagReturn.getDescricao());
                     }
                     else
                     {
-                        tag = tag.Replace(" ", "").Trim();
+                        tag.setDescricao(tag.getDescricao().Replace(" ", "").Trim());
 
-                        String queryStringTagsInsert = "insert into tblTag (descricao) values (@descricao)";
-                        SqlCommand cmdTags = new SqlCommand(queryStringTagsInsert);
-                        cmdTags.Parameters.Add("@descricao", SqlDbType.NVarChar, 70).Value = tag;
+                        TagController.criarTag(this, tag);
 
-                        int flagTag = Connection.manutencaoDB(cmdTags);
+                        tagReturn = TagController.listarTag(this, tag.getDescricao());
 
-                        queryStringTags = "select * from tblTag where '" + tag + "' = descricao";
-                        dtTags = Connection.executarSQL(queryStringTags);
-
-                        if (dtTags.Rows.Count > 0)
+                        if (tagReturn != null)
                         {
-                            DataRow[] rowsTags = dtTags.Select();
-                            codTag = int.Parse(rowsTags[0]["codTag"].ToString());
+                            tag.setCodTag(tagReturn.getCodTag());
                         }
                     }
 
-                    String queryStringProjetos = "insert into tblProjeto (codStatus, codTag, titulo, descricao) values (@codStatus, @codTag, @titulo, @descricao)";
-                    SqlCommand cmdProjetos = new SqlCommand(queryStringProjetos);
-                    cmdProjetos.Parameters.Add("@codStatus", SqlDbType.Int).Value = int.Parse(status);
-                    cmdProjetos.Parameters.Add("@codTag", SqlDbType.Int).Value = codTag;
-                    cmdProjetos.Parameters.Add("@titulo", SqlDbType.NVarChar, 70).Value = titulo;
-                    cmdProjetos.Parameters.Add("@descricao", SqlDbType.NVarChar, 200).Value = descricao;
+                    projeto.setCodStatus(_status.getCodStatus());
+                    projeto.setCodTag(tag.getCodTag());
 
-                    int flag = Connection.manutencaoDB(cmdProjetos);
+                    ProjetoController.criarProjeto(this, projeto);
 
-                    if (flag > 0)
+                    int final = ProjetoController.finalProjeto(this);
+
+                    if (final >= 0)
                     {
-                        flag = 0;
+                        ProjetoUsuario projetoUsuario = new ProjetoUsuario();
+                        projetoUsuario.setCodProjeto(final);
+                        projetoUsuario.setCodUsuario(int.Parse(Request.Cookies["codUsuario"].Value));
 
-                        DataTable dtlastProjeto = Connection.executarSQL("select ident_current('tblProjeto') as TOTAL");
-                        DataRow[] rowsLastProjeto = dtlastProjeto.Select();
+                        ProjetoUsuarioController.criarProjetoUsuario(this, projetoUsuario);
 
-                        String queryStringProjetosUsuario = "insert into tblProjetoUsuario (codProjeto, codUsuario) values (@codProjeto, @codUsuario)";
-                        SqlCommand cmdProjetosUsuario = new SqlCommand(queryStringProjetosUsuario);
-
-                        cmdProjetosUsuario.Parameters.Add("@codProjeto", SqlDbType.Int).Value = int.Parse(rowsLastProjeto[0]["TOTAL"].ToString());
-                        cmdProjetosUsuario.Parameters.Add("@codUsuario", SqlDbType.Int).Value = int.Parse(Request.Cookies["codUsuario"].Value);
-
-                        flag = Connection.manutencaoDB(cmdProjetosUsuario);
-
-                        if (flag > 0)
-                        {
-                            Response.Redirect("~/Views/ListProjects.aspx");
-                        }
-                        else
-                        {
-                            Utils.ShowMessage(this, "Erro ao cadastrar Projeto para usuario!");
-                        }
+                        Response.Redirect("~/Views/ListProjects.aspx");
                     }
                     else
                     {
-                        Utils.ShowMessage(this, "Erro ao cadastrar Projeto!");
-                    }
+                        Utils.ShowMessage(this, "Error!");
+                    }                    
                 }
                 else
                 {
@@ -110,11 +95,17 @@ namespace ListaProjetos.Views
 
         public void LoadSubjects()
         {
+            SqlConnection conn = Connection.open();
+
+            String queryString = "select * from tblStatus";
+
             try
             {
-                String queryString = "select * from tblStatus";
+                SqlDataAdapter adaptador = new SqlDataAdapter(queryString, conn);
+                DataSet ds = new DataSet();
+                adaptador.Fill(ds);
 
-                DataTable dt = Connection.executarSQL(queryString);
+                DataTable dt = ds.Tables[0];
 
                 if (dt.Rows.Count > 0)
                 {
@@ -129,9 +120,12 @@ namespace ListaProjetos.Views
                     Utils.ShowMessage(this, "Erro ao carregar!");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Utils.ShowMessage(this, "Erro ao carregar!");
+            }
+            finally
+            {
+                Connection.close();
             }
         }
     }

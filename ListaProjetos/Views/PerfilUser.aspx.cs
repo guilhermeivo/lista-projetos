@@ -21,7 +21,7 @@ namespace ListaProjetos.Views
                     if (Request.Cookies["codUsuario"] != null)
                     {
 
-                        String codUsuario = Request.Cookies["codUsuario"].Value;
+                        int codUsuario = int.Parse(Request.Cookies["codUsuario"].Value);
 
                         Usuario usuario = UsuarioController.listarUsuarioCod(this, codUsuario);
 
